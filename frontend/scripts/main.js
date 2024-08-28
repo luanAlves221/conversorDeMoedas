@@ -37,10 +37,13 @@ function s_historico(o, d, quantidade, resultado) {
 async function converterMoeda() {
     const moeda_o = document.getElementById('moedaOrigem').value;
     const moeda_d = document.getElementById('moedaDestino').value;
-    const valor = document.getElementById('valor').value;
+    let valor = document.getElementById('valor').value;
 
-    if (!moeda_o || !moeda_d || !valor || valor <= 0) {
-        document.getElementById('resultado').innerText = 'Por favor. Insira um valor Válido e selecione as moedas';
+    valor = valor.replace("R$", "").replace(",", ".").trim();
+    valor = parseFloat(valor);
+
+    if (!moeda_o || !moeda_d || isNaN(valor) || valor <= 0) {
+        document.getElementById('resultado').innerText = 'Por favor, insira um valor válido e selecione as moedas';
         return;
     }
 
@@ -51,4 +54,26 @@ async function converterMoeda() {
     } catch (erro) {
         document.getElementById('resultado').innerText = 'Erro ao tentar realizar a conversão. Tente novamente mais tarde.';
     }
+}
+
+function formatarMoeda(campo) {
+    let valor = campo.value.replace(/\D/g, "");
+    valor = (valor / 100).toFixed(2) + "";
+    valor = valor.replace(".", ",");
+    valor = "R$ " + valor;
+    campo.value = valor;
+}
+
+
+function formatarMoeda(campo) {
+    let valor = campo.value.replace(/\D/g, "");
+    valor = (valor / 100).toFixed(2) + "";
+    valor = valor.replace(".", ",");
+    valor = "R$ " + valor;
+    campo.value = valor;
+}
+
+function limparResultados() {
+    document.getElementById("valor").value = "R$ 0,00";  // Redefine o campo de input 'valor' para o valor inicial
+    document.getElementById("resultado").textContent = "";  // Limpa o conteúdo da div 'resultado'
 }

@@ -21,9 +21,10 @@
         </div><br>
         <div>
             <label for="valor">Valor:</label>
-            <input type="number" id="valor" placeholder="100">
+            <input type="text" id="valor" placeholder="R$0,00" oninput="formatarMoeda(this)">
         </div>
-        <button onclick="converterMoeda()">Converter</button>
+        <button onclick="converterMoeda()">Converter</button><br>
+        <button onclick="limparResultados()">Limpar</button>
         <div id="resultado"></div>
     </div>
     <script src="scripts/main.js"></script>
