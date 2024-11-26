@@ -26,7 +26,13 @@
         <button onclick="converterMoeda()">Converter</button><br>
         <button onclick="limparResultados()">Limpar</button>
         <div id="resultado"></div>
-    </div>
+        <hr>
+        <details>
+            <summary>Histórico de Conversões</summary>
+            <ul id="historicoConversoes"></ul>
+            <button id="limparHistorico" onclick="limparHistorico()">Limpar Histórico</button>
+        </details>
+        
     <script src="scripts/main.js"></script>
 </body>
 
